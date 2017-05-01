@@ -2,18 +2,16 @@ import React, { Component } from 'react';
 import WeatherItem from '../../components/WeatherItem/WeatherItem.js';
 import * as styles from './WeatherList.styl';
 
-// function renderWeatherItems(weatherItems) {
-// 	return weatherItems.map((weatherItem, index) => {
-// 		return <WeatherItem { ...weather } key={ index } />
-// 	});
-// }
-
 export default class WeatherList extends Component {
+	constructor(props) {
+		super(props);
+	}
 	render() {
 		return (
 			<section className="weatherList">
-				{/* { renderWeatherItems(this.props.weatherItems) } */}
-				<WeatherItem />
+				{this.props.cities.map((city, index)=>{
+					return <WeatherItem name={city.name} temp={city.temp} key={index}/>
+				})}
 			</section>
 		);
 	}

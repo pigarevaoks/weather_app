@@ -12,9 +12,17 @@ class App extends Component {
 				temp: '',
 				name: ''
 			},
-			weather: []
+			weather: [],
+			cities: []
 		}
 		this.updateWeatherInfo = this.updateWeatherInfo.bind(this);
+		this.updateCity = this.updateCity.bind(this);
+	}
+
+	componentWillMount() {
+		if (localStorage.cities) {
+			this.setState({cities: JSON.parse(localStorage.cities)})
+		}
 	}
 
 	updateWeatherInfo(weatherInfo) {
@@ -23,13 +31,20 @@ class App extends Component {
 		});
 	}
 
+	updateCity(cityInfo) {
+		let cities = this.state.cities.slice()
+		cities.push(cityInfo)
+		this.setState({ cities: cities });
+		localStorage.setItem('cities', JSON.stringify(cities))
+	}
+
 	render() {
 		return (
 			<div className="app">
 				<div className="app__inner">
-					<Search updateInfo={this.updateWeatherInfo}/>
-					<SearchResult weatherInfo={this.state.weatherInfo}/>
-					<WeatherList />
+					<Search updateInfo={this.updateWeatherInfo} />
+					<SearchResult weatherInfo={this.state.weatherInfo} updateCity={this.updateCity} />
+					<WeatherList cities={this.state.cities} />
 				</div>
 			</div>
 		);
