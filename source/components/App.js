@@ -38,13 +38,19 @@ class App extends Component {
 		localStorage.setItem('cities', JSON.stringify(cities))
 	}
 
+	deleteCity(city) {
+		let newCities = this.state.cities.filter((cityItem) => cityItem.name !== city)
+		this.setState({cities: newCities})
+		localStorage.setItem('cities', JSON.stringify(newCities))
+	}
+
 	render() {
 		return (
 			<div className="app">
 				<div className="app__inner">
 					<Search updateInfo={this.updateWeatherInfo} />
 					<SearchResult weatherInfo={this.state.weatherInfo} updateCity={this.updateCity} />
-					<WeatherList cities={this.state.cities} />
+					<WeatherList cities={this.state.cities} deleteCity={this.deleteCity.bind(this)} />
 				</div>
 			</div>
 		);
