@@ -9,16 +9,6 @@ export default class Search extends Component {
 	handleSearch(event) {
 		let cityName = event.target.value;
 		if (cityName.length < 3) { return false }
-		fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=63d0d4d4fbe038a5fbb63e0b3bc3e243`)
-			.then((response) => response.json())
-			.then((data) => {
-				this.props.updateInfo({ temp: data.main.temp, name: data.name})
-				console.log(data);
-
-			})
-			.catch((error) => {
-				console.error(error);
-			})
 	}
 	render() {
 		return (
