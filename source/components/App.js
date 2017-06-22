@@ -7,6 +7,9 @@ import * as styles from './App.styl';
 class App extends Component {
 	constructor(props) {
 		super(props);
+		this.updateWeatherInfo = this.updateWeatherInfo.bind(this);
+		this.addCity = this.addCity.bind(this);
+		this.deleteCity = this.deleteCity.bind(this);
 		this.state = {
 			weatherInfo: {
 				temp: '',
@@ -19,8 +22,13 @@ class App extends Component {
 
 	componentWillMount() {
 		if (localStorage.cities) {
+			const cities = JSON.parse(localStorage.cities).map((name) => {
+				return { name: name, temp: 0 }
+			})
 			
-			// this.setState({cities: JSON.parse(localStorage.cities)})
+			this.setState({
+				cities: cities
+			})
 		}
 	}
 
@@ -32,6 +40,7 @@ class App extends Component {
 
 	addCity(cityInfo) {
 		let cities = this.state.cities.slice()
+
 		cities.push(cityInfo)
 		this.setState({ cities: cities });
 
@@ -49,9 +58,9 @@ class App extends Component {
 		return (
 			<div className="app">
 				<div className="app__inner">
-					<Search updateInfo={this.updateWeatherInfo.bind(this)} />
-					<SearchResult weatherInfo={this.state.weatherInfo} updateCity={this.addCity.bind(this)} />
-					<WeatherList cities={this.state.cities} deleteCity={this.deleteCity.bind(this)} />
+					<Search updateInfo={this.updateWeatherInfo} />
+					<SearchResult weatherInfo={this.state.weatherInfo} updateCity={this.addCity} />
+					<WeatherList cities={this.state.cities} deleteCity={this.deleteCity} />
 				</div>
 			</div>
 		);
