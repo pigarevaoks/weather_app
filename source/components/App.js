@@ -1,23 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Search from './Search/Search.js';
 import SearchResult from './SearchResult/SearchResult.js';
 import WeatherList from './WeatherList/WeatherList.js';
+import { connect } from 'react-redux';
+import { addCity } from './../actions';
 import * as styles from './App.styl';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.updateWeatherInfo = this.updateWeatherInfo.bind(this);
 		this.addCity = this.addCity.bind(this);
 		this.deleteCity = this.deleteCity.bind(this);
-		this.state = {
-			weatherInfo: {
-				temp: '',
-				name: ''
-			},
-			weather: [],
-			cities: []
-		}
+		// this.state = {
+		// 	weatherInfo: {
+		// 		temp: '',
+		// 		name: ''
+		// 	},
+		// 	weather: [],
+		// 	cities: []
+		// }
 	}
 
 	componentWillMount() {
@@ -25,17 +26,9 @@ class App extends Component {
 			const cities = JSON.parse(localStorage.cities).map((name) => {
 				return { name: name, temp: 0 }
 			})
-			
-			this.setState({
-				cities: cities
-			})
-		}
-	}
 
-	updateWeatherInfo(weatherInfo) {
-		this.setState({
-			weatherInfo: weatherInfo
-		});
+			this.props.addCity(cities);
+		}
 	}
 
 	addCity(cityInfo) {
@@ -58,13 +51,26 @@ class App extends Component {
 		return (
 			<div className="app">
 				<div className="app__inner">
-					<Search updateInfo={this.updateWeatherInfo} />
-					<SearchResult weatherInfo={this.state.weatherInfo} updateCity={this.addCity} />
-					<WeatherList cities={this.state.cities} deleteCity={this.deleteCity} />
+					<Search />
+					<SearchResult updateCity={this.addCity} />
+					<WeatherList deleteCity={this.deleteCity} />
 				</div>
 			</div>
 		);
 	}
 }
 
-export default App;
+App.propTypes = {
+	addCity: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+	cities: state.cities,
+	weatherInfo: state.weatherInfo
+})
+
+const mapDispatchToProps = {
+	addCity
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

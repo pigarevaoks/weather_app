@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+// import { addCity } from '../../actions';
 import * as styles from './searchResult.styl';
 
-export default class SearchResult extends Component {
+
+class SearchResult extends Component {
 	constructor(props) {
 		super(props);
 		this.handleSaveCity = this.handleSaveCity.bind(this);
 	}
 	handleSaveCity() {
-		this.props.updateCity(this.props.weatherInfo)
+		this.props.addCity('bryansk')
+		// this.props.updateCity(this.props.weatherInfo)
 	}
 	render() {
 		return (
@@ -23,3 +27,15 @@ export default class SearchResult extends Component {
 		);
 	}
 }
+
+// App.propTypes = {
+// 	name: PropTypes.func.isRequired,
+// 	temp: PropTypes.func.isRequired,
+// }
+const mapStateToProps = state => ({
+	weatherInfo: state.weatherInfo
+})
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import WeatherItem from '../../components/WeatherItem/WeatherItem.js';
+import { connect } from 'react-redux';
 import * as styles from './WeatherList.styl';
 
-export default class WeatherList extends Component {
+class WeatherList extends Component {
 	constructor(props) {
 		super(props);
 	}
@@ -17,3 +18,11 @@ export default class WeatherList extends Component {
 		);
 	}
 }
+
+const mapStateToProps = state => ({
+	cities: state.cities
+})
+
+const mapDispatchToProps = {}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WeatherList);

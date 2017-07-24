@@ -1,6 +1,6 @@
-#React Boilerplate
+# Weather application
 
-## Installation (development)
+## Installation
 
 1. ```npm install```
 2. ```npm run dev```

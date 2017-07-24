@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { addWeatherInfo } from './../../actions';
 import * as styles from './search.styl';
 
-export default class Search extends Component {
+
+class Search extends Component {
 	constructor(props) {
 		super(props);
 		this.handleSearch = this.handleSearch.bind(this);
 	}
-	
+
 	handleSearch(event) {
 		const domen = 'api.openweathermap.org/data/2.5/weather';
 		const key = '63d0d4d4fbe038a5fbb63e0b3bc3e243';
@@ -17,10 +20,10 @@ export default class Search extends Component {
 		fetch(`http://${domen}?q=${cityName}&appid=${key}`)
 			.then((response) => response.json())
 			.then((response) => {
-				this.props.updateInfo({
+				this.props.addWeatherInfo({
 					temp: response.main.temp,
 					name: response.name
-				})
+				});
 			})
 			.catch((error) => {
 				console.error(error);
@@ -35,3 +38,17 @@ export default class Search extends Component {
 		);
 	}
 }
+
+Search.propTypes = {
+	addWeatherInfo: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+	weatherInfo: state.weatherInfo
+})
+
+const mapDispatchToProps = {
+	addWeatherInfo
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
