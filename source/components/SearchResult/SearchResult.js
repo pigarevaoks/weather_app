@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux'
-// import { addCity } from '../../actions';
+import { addCity } from './../../actions';
 import * as styles from './searchResult.styl';
 
 
 class SearchResult extends Component {
 	constructor(props) {
 		super(props);
-		this.handleSaveCity = this.handleSaveCity.bind(this);
+		this.addCityInfo = this.addCityInfo.bind(this);
 	}
-	handleSaveCity() {
-		this.props.addCity('bryansk')
-		// this.props.updateCity(this.props.weatherInfo)
+
+	addCityInfo() {
+		this.props.addCity(this.props.weatherInfo);
+
+		// const storageCities = this.props.cities.map((city) => city.name)
+		// localStorage.setItem('cities', JSON.stringify(storageCities))
 	}
+
 	render() {
 		return (
 			<div className="searchResult">
@@ -20,7 +24,7 @@ class SearchResult extends Component {
 					<div className="searchResult__inner">
 						<div className="searchResult__name">{this.props.weatherInfo.name}</div>
 						<div className="searchResult__temp">{this.props.weatherInfo.temp}</div>
-						<button type="button" onClick={this.handleSaveCity}>ADD</button>
+						<button type="button" onClick={this.addCityInfo}>ADD</button>
 					</div>
 				}
 			</div>
@@ -28,14 +32,17 @@ class SearchResult extends Component {
 	}
 }
 
-// App.propTypes = {
-// 	name: PropTypes.func.isRequired,
-// 	temp: PropTypes.func.isRequired,
-// }
+SearchResult.propTypes = {
+	addCity: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
-	weatherInfo: state.weatherInfo
+	weatherInfo: state.weatherInfo,
+	cities: state.cities
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+	addCity
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);

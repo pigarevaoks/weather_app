@@ -11,8 +11,7 @@ class WeatherList extends Component {
 		return (
 			<section className="weatherList">
 				{this.props.cities.map((city, index)=>{
-					return <WeatherItem name={city.name} temp={city.temp} key={index}
-															deleteCity={this.props.deleteCity}/>
+					return <WeatherItem name={city.name} temp={city.temp} key={index} />
 				})}
 			</section>
 		);

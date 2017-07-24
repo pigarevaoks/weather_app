@@ -1,18 +1,19 @@
 import { ADD_CITY } from './../actions/index.js';
 import { ADD_WEATHER } from './../actions/index.js';
+import { DELETE_CITY } from './../actions/index.js';
 
 const initialState = {
     weatherInfo: {
         temp: '',
         name: ''
     },
-    cities: [
-        {
-            name: 'moscow',
-            temp: '18 C'
-        }
-    ]
-    // weather: [],
+    cities: []
+    // cities: [
+    //     {
+    //         name: '',
+    //         temp: ''
+    //     }
+    // ]
 };
 
 export const city = (state = initialState, action) => {
@@ -20,7 +21,7 @@ export const city = (state = initialState, action) => {
     case ADD_CITY: {
             return {
                 ...state,
-                cities: action.cities
+                cities: [action.city, ...state.cities]
             };
         }
     case ADD_WEATHER: {
@@ -29,9 +30,15 @@ export const city = (state = initialState, action) => {
                 weatherInfo: action.weatherInfo
             };
         }
-    // case 'DELETE_CITY':
-    //   return {}
-
+    case DELETE_CITY: {
+            return {
+                ...state,
+                cities: [
+                    ...state.cities.slice(0, action.id),
+                    ...state.cities.slice(action.id + 1)
+                ]
+            };
+        }
     default:
       return state
   }
