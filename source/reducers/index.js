@@ -17,20 +17,26 @@ const initialState = {
 };
 
 export const city = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_CITY: {
-            return {
-                ...state,
-                cities: [action.city, ...state.cities]
-            };
+    switch (action.type) {
+        case ADD_CITY: {
+            const have_city = state.cities.find((city) => city.name === action.city.name)
+
+            if (have_city) {
+                return { ...state }
+            } else {
+                return {
+                    ...state,
+                    cities: [action.city, ...state.cities]
+                };
+            }
         }
-    case ADD_WEATHER: {
+        case ADD_WEATHER: {
             return {
                 ...state,
                 weatherInfo: action.weatherInfo
             };
         }
-    case DELETE_CITY: {
+        case DELETE_CITY: {
             return {
                 ...state,
                 cities: [
@@ -39,9 +45,9 @@ export const city = (state = initialState, action) => {
                 ]
             };
         }
-    default:
-      return state
-  }
+        default:
+          return state
+    }
 }
 
 export default city;
