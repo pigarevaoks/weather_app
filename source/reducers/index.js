@@ -1,6 +1,4 @@
-import { ADD_CITY } from './../actions/index.js';
-import { ADD_WEATHER } from './../actions/index.js';
-import { DELETE_CITY } from './../actions/index.js';
+import { ADD_CITY, LOAD_CITIES, ADD_WEATHER, DELETE_CITY } from './../actions/index.js';
 
 const initialState = {
     weatherInfo: {
@@ -24,11 +22,20 @@ export const city = (state = initialState, action) => {
             if (have_city) {
                 return { ...state }
             } else {
+                const cities = [action.city, ...state.cities]
+        		localStorage.setItem('cities', JSON.stringify(cities))
+
                 return {
                     ...state,
-                    cities: [action.city, ...state.cities]
+                    cities: cities
                 };
             }
+        }
+        case LOAD_CITIES: {
+            return {
+                ...state,
+                cities: action.cities
+            };
         }
         case ADD_WEATHER: {
             return {
@@ -37,12 +44,15 @@ export const city = (state = initialState, action) => {
             };
         }
         case DELETE_CITY: {
+            const cities = [
+                ...state.cities.slice(0, action.id),
+                ...state.cities.slice(action.id + 1)
+            ]
+            localStorage.setItem('cities', JSON.stringify(cities))
+
             return {
                 ...state,
-                cities: [
-                    ...state.cities.slice(0, action.id),
-                    ...state.cities.slice(action.id + 1)
-                ]
+                cities: cities
             };
         }
         default:

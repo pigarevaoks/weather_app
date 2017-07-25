@@ -12,9 +12,6 @@ class SearchResult extends Component {
 
 	addCityInfo() {
 		this.props.addCity(this.props.weatherInfo);
-
-		// const storageCities = this.props.cities.map((city) => city.name)
-		// localStorage.setItem('cities', JSON.stringify(storageCities))
 	}
 
 	render() {
