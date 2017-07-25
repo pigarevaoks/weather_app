@@ -4,12 +4,18 @@
   "description": "React Boilerplate",
   "scripts": {
     "build": "webpack -p",
-    "dev": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8090 --host 0.0.0.0"
+    "dev": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 8090 --host 0.0.0.0",
+    "test": "jest"
   },
   "author": {
     "name": "Oksana Pigareva",
     "email": "pigarevaoks@gmail.ru",
     "url": "https://github.com/StrayFromThePath"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|styl)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   },
   "dependencies": {
     "babel-cli": "^6.7.7",
@@ -48,6 +54,7 @@
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.4",
     "html-loader": "^0.4.3",
+    "jest": "^20.0.4",
     "json-loader": "^0.5.3",
     "less": "^2.6.0",
     "less-loader": "^2.2.1",
