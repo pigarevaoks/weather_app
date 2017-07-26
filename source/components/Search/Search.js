@@ -1,10 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addWeatherInfo } from './../../actions';
 import * as styles from './search.styl';
 
-
-class Search extends Component {
+@connect(
+	state => ({ weatherInfo: state.weatherInfo }),
+	{ addWeatherInfo }
+)
+export default class Search extends Component {
 	constructor(props) {
 		super(props);
 		this.handleSearch = this.handleSearch.bind(this);
@@ -38,11 +41,3 @@ class Search extends Component {
 		);
 	}
 }
-
-Search.propTypes = {
-	addWeatherInfo: PropTypes.func.isRequired
-}
-
-const mapStateToProps = state => ({ weatherInfo: state.weatherInfo });
-const mapDispatchToProps = { addWeatherInfo };
-export default connect(mapStateToProps, mapDispatchToProps)(Search);

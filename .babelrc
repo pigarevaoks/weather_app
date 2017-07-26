@@ -5,8 +5,9 @@
     "stage-3"
   ],
   "plugins": [
-    "transform-class-properties",
+    "transform-decorators-legacy",
     "transform-decorators",
+    "transform-class-properties",
     "transform-object-rest-spread"
   ]
 }

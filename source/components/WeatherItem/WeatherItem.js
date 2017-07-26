@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import { deleteCity } from './../../actions';
 import * as styles from './WeatherItem.styl';
 
-class WeatherItem extends Component {
+@connect(
+	state => ({ cities: state.cities }),
+	{ deleteCity }
+)
+export default class WeatherItem extends Component {
 	constructor(props) {
 		super(props);
 		this.removeCity = this.removeCity.bind(this);
@@ -29,13 +33,3 @@ class WeatherItem extends Component {
 		);
 	}
 }
-
-const mapStateToProps = state => ({
-	cities: state.cities
-})
-
-const mapDispatchToProps = {
-	deleteCity
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WeatherItem);
