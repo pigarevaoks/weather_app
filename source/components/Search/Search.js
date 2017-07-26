@@ -43,12 +43,6 @@ Search.propTypes = {
 	addWeatherInfo: PropTypes.func.isRequired
 }
 
-const mapStateToProps = state => ({
-	weatherInfo: state.weatherInfo
-})
-
-const mapDispatchToProps = {
-	addWeatherInfo
-}
-
+const mapStateToProps = state => ({ weatherInfo: state.weatherInfo });
+const mapDispatchToProps = { addWeatherInfo };
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

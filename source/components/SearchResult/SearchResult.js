@@ -36,10 +36,6 @@ SearchResult.propTypes = {
 const mapStateToProps = state => ({
 	weatherInfo: state.weatherInfo,
 	cities: state.cities
-})
-
-const mapDispatchToProps = {
-	addCity
-}
-
+});
+const mapDispatchToProps = { addCity };
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
