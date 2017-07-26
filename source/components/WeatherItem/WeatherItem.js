@@ -12,8 +12,6 @@ class WeatherItem extends Component {
 	removeCity(name) {
 		const cityIndex = this.props.cities.findIndex((city) => city.name == name)
 		this.props.deleteCity(cityIndex);
-
-		// localStorage.setItem('cities', JSON.stringify(newCities))
 	}
 
 	render() {
