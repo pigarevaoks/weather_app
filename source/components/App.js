@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadCities } from './../actions';
+import UserLocation from './UserLocation/UserLocation.js';
 import Search from './Search/Search.js';
 import SearchResult from './SearchResult/SearchResult.js';
 import WeatherList from './WeatherList/WeatherList.js';
@@ -26,6 +27,7 @@ export default class App extends Component {
 			<div className="app">
 				<div className="app__inner">
 					<h1 className="app__title">Weather application</h1>
+					<UserLocation />
 					<div className="app__content">
 						<Search />
 						{
