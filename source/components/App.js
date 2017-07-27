@@ -7,7 +7,10 @@ import WeatherList from './WeatherList/WeatherList.js';
 import * as styles from './App.styl';
 
 @connect(
-	state => ({ cities: state.cities }),
+	state => ({
+		cities: state.cities,
+		weatherInfo: state.weatherInfo
+	}),
 	{ loadCities }
 )
 export default class App extends Component {
@@ -22,9 +25,16 @@ export default class App extends Component {
 		return (
 			<div className="app">
 				<div className="app__inner">
-					<Search />
-					<SearchResult />
-					<WeatherList cities={this.props.cities} />
+					<h1 className="app__title">Weather application</h1>
+					<div className="app__content">
+						<Search />
+						{
+							(this.props.weatherInfo.name) ?
+							<SearchResult /> :
+							null
+						}
+						<WeatherList cities={this.props.cities} />
+					</div>
 				</div>
 			</div>
 		);

@@ -36,7 +36,10 @@ export default class Search extends Component {
 	render() {
 		return (
 			<div className="search">
-				<input className="search__input" type="search" placeholder="Поиск" onChange={this.handleSearch}/>
+				<input className="search__input" 
+						type="search"
+						placeholder="Search"
+						onChange={this.handleSearch} />
 			</div>
 		);
 	}

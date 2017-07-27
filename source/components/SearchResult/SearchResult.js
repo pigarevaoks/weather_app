@@ -23,13 +23,15 @@ export default class SearchResult extends Component {
 	render() {
 		return (
 			<div className="searchResult">
-				{ (this.props.weatherInfo.name) &&
-					<div className="searchResult__inner">
-						<div className="searchResult__name">{this.props.weatherInfo.name}</div>
-						<div className="searchResult__temp">{this.props.weatherInfo.temp}</div>
-						<button type="button" onClick={this.addCityInfo}>ADD</button>
-					</div>
-				}
+				<div className="searchResult__inner">
+					<div className="searchResult__name">{this.props.weatherInfo.name}</div>
+					<div className="searchResult__temp">{this.props.weatherInfo.temp}</div>
+					<button type="button"
+							className="searchResult__btn"
+							onClick={this.addCityInfo}>
+						ADD
+					</button>
+				</div>
 			</div>
 		);
 	}

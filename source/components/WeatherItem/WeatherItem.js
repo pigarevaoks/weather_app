@@ -21,14 +21,15 @@ export default class WeatherItem extends Component {
 	render() {
 		return (
 			<div className="weatherItem">
-				<div className="searchResult__inner">
-					<div className="searchResult__name">{this.props.name}</div>
-					<div className="searchResult__temp">{this.props.temp}</div>
-					<button type="button"
-							onClick={() => this.removeCity(this.props.name)}>
-						DELETE
-					</button>
+				<div className="weatherItem__inner">
+					<div className="weatherItem__name">{this.props.name}</div>
+					<div className="weatherItem__temp">{this.props.temp}</div>
 				</div>
+				<button type="button"
+						className="weatherItem__btn"
+						onClick={() => this.removeCity(this.props.name)}>
+					DELETE
+				</button>
 			</div>
 		);
 	}
