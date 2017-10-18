@@ -20,7 +20,7 @@ export default class Search extends Component {
 		let cityName = event.target.value;
 		if (cityName.length < 3) { return false }
 
-		fetch(`http://${domen}?q=${cityName}&appid=${key}`)
+		fetch(`http://${domen}?q=${cityName}&appid=${key}&units=metric`)
 			.then((response) => response.json())
 			.then((response) => {
 				this.props.addWeatherInfo({
@@ -37,9 +37,9 @@ export default class Search extends Component {
 		return (
 			<div className="search">
 				<input className="search__input" 
-						type="search"
-						placeholder="Search"
-						onChange={this.handleSearch} />
+					   type="search"
+					   placeholder="Search"
+					   onChange={this.handleSearch} />
 			</div>
 		);
 	}

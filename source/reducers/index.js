@@ -1,10 +1,4 @@
-import {
-        ADD_CITY,
-        LOAD_CITIES,
-        ADD_WEATHER,
-        DELETE_CITY,
-        GET_LOCATION
-    } from './../actions/index.js';
+import { ADD_CITY, LOAD_CITIES, ADD_WEATHER, DELETE_CITY, GET_LOCATION } from './../actions/index.js';
 
 const initialState = {
     weatherInfo: {
@@ -12,12 +6,6 @@ const initialState = {
         name: ''
     },
     cities: [],
-    // cities: [
-    //     {
-    //         name: '',
-    //         temp: ''
-    //     }
-    // ]
     location: {
       latitude: 0,
       longitude: 0
@@ -66,12 +54,21 @@ export const city = (state = initialState, action) => {
             };
         }
         case GET_LOCATION: {
+            if (action.error) {
+                return {
+                    ...state,
+                    location: {
+                        latitude: 0,
+                        longitude: 0
+                    }
+                }
+            }
+
             return {
                 ...state,
                 location: {
                     latitude: action.location.coords.latitude,
-                    longitude: action.location.coords.latitude,
-
+                    longitude: action.location.coords.longitude,
                 }
             }
         }
