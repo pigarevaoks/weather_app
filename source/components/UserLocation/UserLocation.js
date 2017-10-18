@@ -40,8 +40,8 @@ export default class UserLocation extends Component {
 			<div className="userLocation">
     			{this.state.cityName && this.state.temp ?
 					<div>
-						<div className="userLocation__title">Weather in {this.state.cityName}</div>
-						<div className="userLocation__item"><span>temp: </span>{this.state.temp} </div>
+						<div className="userLocation__title">Weather in <span className="userLocation__city">{this.state.cityName}</span></div>
+						<div className="userLocation__item"><span>TEMP: </span>{this.state.temp} &deg;C</div>
 					</div> : null
 				}
 			</div>

@@ -25,7 +25,7 @@ export default class SearchResult extends Component {
 			<div className="searchResult">
 				<div className="searchResult__inner">
 					<div className="searchResult__name">{this.props.weatherInfo.name}</div>
-					<div className="searchResult__temp">{this.props.weatherInfo.temp}</div>
+					<div className="searchResult__temp">{this.props.weatherInfo.temp} &deg;C</div>
 					<button type="button"
 							className="searchResult__btn"
 							onClick={this.addCityInfo}>

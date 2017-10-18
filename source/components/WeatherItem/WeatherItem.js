@@ -23,7 +23,7 @@ export default class WeatherItem extends Component {
 			<div className="weatherItem">
 				<div className="weatherItem__inner">
 					<div className="weatherItem__name">{this.props.name}</div>
-					<div className="weatherItem__temp">{this.props.temp}</div>
+					<div className="weatherItem__temp">{this.props.temp} &deg;C</div>
 				</div>
 				<button type="button"
 						className="weatherItem__btn"
