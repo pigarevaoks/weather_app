@@ -27,6 +27,7 @@
     "lodash": "^3.10.1",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
+    "react-preloader-icon": "^0.1.0",
     "react-redux": "^5.0.5",
     "react-router": "^2.6.1",
     "redux": "^3.7.0"

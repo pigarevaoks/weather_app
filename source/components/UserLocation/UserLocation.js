@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getLocation } from './../../actions';
 import * as styles from './UserLocation.styl';
+import PreloaderIcon, { ICON_TYPE } from 'react-preloader-icon';
 
 @connect(
 	state => ({ location: state.location }),
@@ -42,7 +43,15 @@ export default class UserLocation extends Component {
 					<div>
 						<div className="userLocation__title">Weather in <span className="userLocation__city">{this.state.cityName}</span></div>
 						<div className="userLocation__item"><span>TEMP: </span>{this.state.temp} &deg;C</div>
-					</div> : null
+					</div>
+					: <div className="userLocation__loader">
+						<PreloaderIcon
+							type={ICON_TYPE.OVAL}
+							size={32}
+							strokeWidth={8}
+							strokeColor="#5fb3e4"
+							duration={800} /> 
+					</div>
 				}
 			</div>
 		);
